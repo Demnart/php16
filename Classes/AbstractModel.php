@@ -5,6 +5,12 @@ class AbstractModel
 {
 
     protected static $table;
+    private $data=[];
+
+    public function __set($name, $value)
+    {
+        $this->data[$name] = $value;
+    }
 
     public static function findALL()
     {
@@ -32,4 +38,14 @@ class AbstractModel
         $db->setClass($class);
         return $db->getALL($sql,[':value'=>$value]);
     }
+
+    public function deleteByPk()
+    {
+
+        $sql = ' DELETE FROM ' . static::$table . ' WHERE id = :id ';
+        $db = new DB();
+        $db->excute($sql,[':id' =>$this->data['id']]);
+
+    }
+
 }
