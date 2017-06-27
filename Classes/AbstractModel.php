@@ -23,4 +23,13 @@ class AbstractModel
         $db->setClass($class);
         return $db->getALL($sql,[':id'=>$id])[0];
     }
+
+    public static function selectByColumn($column,$value)
+    {
+        $class = get_called_class();
+        $sql = ' SELECT * FROM ' . static::$table . ' WHERE ' . $column . ' = :value';
+        $db = new DB();
+        $db->setClass($class);
+        return $db->getALL($sql,[':value'=>$value]);
+    }
 }
