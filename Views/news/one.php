@@ -1,7 +1,3 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: genjo
- * Date: 6/27/17
- * Time: 2:35 PM
- */
+
+echo $item->title . '<br>' . $item->text . '<br>' .$item->author . '<br>';
