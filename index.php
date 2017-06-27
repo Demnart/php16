@@ -1,8 +1,11 @@
 <?php
 require __DIR__ . '/autoload.php';
 
+$contr = isset($_GET['contr']) ? $_GET['contr'] : 'News';
+$act = isset($_GET['act']) ? $_GET['act'] : 'All';
 
-$test = NewsModel::findOneByPK(2);
+$controllerClassName = $contr . 'Controller';
 
-echo $test->title . '<br>' . $test->text . '<br>' . $test->author . '<br>';
-
+$controller = new $controllerClassName();
+$method = 'action' . $act;
+$controller->$method();
