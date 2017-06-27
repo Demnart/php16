@@ -39,6 +39,23 @@ class AbstractModel
         return $db->getALL($sql,[':value'=>$value]);
     }
 
+    public function insert()
+    {
+        $cols = array_keys($this->data);
+        foreach ($cols as $value)
+        {
+            $data[':' . $value] = $this->data[$value];
+        }
+
+           $sql = 'INSERT INTO '. static::$table .
+            ' ('. implode(',',$cols).') 
+            VALUES 
+            ('. implode(',',array_keys($data)).') ';
+
+        $db = new DB();
+        $db->excute($sql,$data);
+    }
+
     public function deleteByPk()
     {
 
