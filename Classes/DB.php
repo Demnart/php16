@@ -22,7 +22,7 @@ class DB
     {
         $sth= $this->dbh->prepare($sql);
         $sth->execute($params);
-        return $sth->fetchAll(PDO::FETCH_CLASS,$this->class);
+        return $sth->fetchAll(PDO::FETCH_CLASS);
     }
 
     public function excute($sql,$params=[])
